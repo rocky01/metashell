@@ -4,7 +4,7 @@ set -ex
 
 # Workaround for some faulty travis image
 # https://github.com/travis-ci/travis-ci/issues/9640
-sudo softwareupdate -i "Command Line Tools (macOS High Sierra version 10.13) for Xcode-9.4"
+sudo softwareupdate -i "Command Line Tools (macOS High Sierra version 10.13) for Xcode-9.3"
 
 brew update >/dev/null
 
