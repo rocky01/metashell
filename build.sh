@@ -86,7 +86,7 @@ mkdir -p "bin/${PLATFORM_ID}/metashell"; cd "bin/${PLATFORM_ID}/metashell"
     cmake ../../.. -DMETASHELL_NO_DOC_GENERATION=1
   fi
   make -j${BUILD_THREADS}
-  ctest -j${TEST_THREADS} -R metashell_pp_system_test_auto_gcc || (cat Testing/Temporary/LastTest.log && false)
+  ctest -j${TEST_THREADS} || (cat Testing/Temporary/LastTest.log && false)
 cd ../../..
 
 if [ "${NO_INSTALLER}" = "" ]
