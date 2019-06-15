@@ -105,33 +105,56 @@ namespace
 
 TEST(includes, tests)
 {
+  try {
   typedef std::vector<boost::filesystem::path> pv;
 
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   just::temp::directory tmp_dir;
 
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   const boost::filesystem::path tmp(tmp_dir.path());
 
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   const boost::filesystem::path a = tmp / "a";
   const boost::filesystem::path b = tmp / "b";
 
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   create_directories(a);
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   create_directories(b);
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
 
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   ASSERT_EQ(filename_list{}, sysincludes({}, {}));
   ASSERT_EQ((pv{a, b}), sysincludes({a, b}, {}));
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   if (!using_msvc())
   {
+    std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
     ASSERT_EQ(pv{}, sysincludes({}, {a, b}));
+    std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   }
 
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   ASSERT_EQ(pv{"."}, quoteincludes({}, {}));
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   if (!using_wave())
   {
+    std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
     ASSERT_EQ((pv{".", a, b}), quoteincludes({a, b}, {}));
+    std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   }
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   ASSERT_EQ((pv{".", a, b}), quoteincludes({}, {a, b}));
+  std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
   if (!(using_msvc() || using_wave()))
   {
+    std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
     ASSERT_EQ((pv{".", a, b}), quoteincludes({b}, {a}));
+    std::cerr << "XXXXX LINE " << __LINE__ << std::endl;
+  }
+  } catch (std::exception& e) {
+    std::cerr << "XXXXX exception thrown " << e.what() << std::endl;
+    throw;
   }
 }
